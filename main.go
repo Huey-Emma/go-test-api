@@ -6,20 +6,14 @@ import (
 	"log/slog"
 	"os"
 	"os/signal"
-
-	"github.com/profclems/go-dotenv"
 )
 
 func main() {
-	if err := dotenv.LoadConfig(); err != nil {
-		log.Fatal(err)
-	}
-
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 	slog.SetDefault(logger)
 
 	builder := (&RouterBuilder{}).
-		Port(dotenv.GetInt("PORT")).
+		Port(8000).
 		Logger(logger)
 
 	router, err := builder.Build()
