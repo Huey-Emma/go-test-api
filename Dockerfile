@@ -12,8 +12,6 @@ RUN apk add --no-cache ca-certificates
 
 COPY --from=builder /app/api api
 
-COPY --from=builder /app/.env .env
-
 EXPOSE 8000
 
 CMD ["./api"]
